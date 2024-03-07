@@ -1,0 +1,57 @@
+.question {
+    color: #1289A7;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.title {
+    color: var(--black, #000);
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.logo {
+    text-align: center;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+}
+
+/* Secondary buttons ------------------------- */
+button[kind="secondary"] {
+    background-color: rgb(27, 20, 100);
+    color: white;
+    border-color: rgb(27, 20, 100);
+    border-radius: 0;
+}
+
+button[kind="secondary"]:hover {
+    color: white;
+    border-color: rgb(27, 20, 100);
+}
+
+/* Primary buttons ------------------------- */
+button[kind="primary"] {
+    background-color: rgb(6, 82, 221);
+    color: white;
+    border-color: rgb(6, 82, 221);
+    border-radius: 0;
+}
+
+button[kind="primary"]:hover {
+    color: white;
+    background-color: rgb(6, 82, 221);
+    border-color: rgb(6, 82, 221);
+}

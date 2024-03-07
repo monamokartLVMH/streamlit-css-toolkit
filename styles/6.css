@@ -1,0 +1,101 @@
+.question {
+    color: #1289A7;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.title {
+    color: var(--black, #000);
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.logo {
+    text-align: center;
+}
+
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+}
+
+/* Secondary buttons ------------------------- */
+button[kind="secondary"] {
+    background-color: rgb(27, 20, 100);
+    color: white;
+    border-color: rgb(27, 20, 100);
+    border-radius: 0;
+}
+
+button[kind="secondary"]:hover {
+    color: white;
+    border-color: rgb(27, 20, 100);
+}
+
+button[kind="secondary"]:focus {
+    background-color: rgb(27, 20, 100);
+    border-color: rgb(27, 20, 100);
+    box-shadow: None;
+    color: white;
+}
+
+button[kind="secondary"]:focus:not(:active) {
+    color: white;
+    border-color: rgb(27, 20, 100);
+}
+
+/* Primary buttons ------------------------- */
+button[kind="primary"] {
+    background-color: rgb(6, 82, 221);
+    color: white;
+    border-color: rgb(6, 82, 221);
+    border-radius: 0;
+}
+
+button[kind="primary"]:hover {
+    color: white;
+    background-color: rgb(6, 82, 221);
+    border-color: rgb(6, 82, 221);
+}
+
+div[data-baseweb="tab-list"]>div[data-testid="stMarkdownContainer"] {
+    background-color: white;
+    color: white;
+}
+
+button[kind="primary"]:focus {
+    background-color: rgb(6, 82, 221);
+    border-color: rgb(6, 82, 221);
+    box-shadow: None;
+    color: white;
+}
+
+button[kind="primary"]:focus:not(:active) {
+    color: white;
+    border-color: rgb(6, 82, 221);
+}
+
+
+button[kind="secondary"]:disabled,
+button[kind="primary"]:disabled {
+    background-color: rgb(193, 219, 228);
+    color: white;
+    border-color: rgb(193, 219, 228);
+}
+
+button[kind="secondary"]:disabled:hover,
+button[kind="primary"]:disabled:hover {
+    background-color: rgb(193, 219, 228);
+    color: white;
+    border-color: rgb(193, 219, 228);
+}
