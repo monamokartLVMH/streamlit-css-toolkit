@@ -21,17 +21,28 @@ def get_star_opacities():
     return dict(zip(keys, values))
 
 
-
 def app():
-    if not "clicked_stars" in st.session_state:
-        st.session_state.clicked_stars = 0
+    tab1, tab2, tab3 = st.tabs(["APP", "stars.py", "stars_html.py"])
 
-    # Display stars with oppacities depending on the choosen grade
-    opactities = get_star_opacities()
-    click_detector(
-        stars_html.stars.format(**opactities), key="clicked_stars"
-    )  # Stars 'listener'
-    # Save a copy of the grade into the session_state
+    with tab1:
+        # Initialize
+        if not "clicked_stars" in st.session_state:
+            st.session_state.clicked_stars = 0
+    
+        # Display stars with oppacities depending on the choosen grade
+        opactities = get_star_opacities()
+        click_detector(
+            stars_html.stars.format(**opactities), key="clicked_stars"
+        )  # Stars 'listener'
+    with tab2:
+        with open("stars.py") as python_file:
+            python_stars_content = python_file.read()
+        st.code(python_stars_content, language="python")
+
+    with tab3:
+        with open("stars_html.py") as python_file:
+            python_html_content = python_file.read()
+        st.code(python_html_content, language="python")
 
 
 if __name__ == "__main__":

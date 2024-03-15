@@ -2,7 +2,15 @@ import streamlit as st
 import os
 import html_utils
 
-theme_config = '[theme]\nprimaryColor="#A3CB38"'
+theme_config = """
+[theme]
+primaryColor="#368f8b"
+backgroundColor="#f3dfc1"
+secondaryBackgroundColor="#ddbea8"
+textColor="#160f29"
+font="sans serif"
+
+"""
 
 fonts = """
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,64 +35,85 @@ lena_im_link = "https://www.cosy.sbg.ac.at/~pmeerw/Watermarking/lena_gray.gif"
 def check_events():
     if "disabled" not in st.session_state:
         st.session_state.disabled = False
-    if "theme" not in st.session_state:
-        st.session_state.theme = False
-    if st.session_state.get("disable_clicked") :
+
+    if st.session_state.get("disable_clicked"):
         st.session_state.disabled = not st.session_state.disabled
-    
-    if st.session_state.get("theme_clicked") :
-        st.session_state.theme = not st.session_state.theme
-        if st.session_state.theme:
-            with open(".streamlit/config.toml", "w") as w:
-                w.write(theme_config)
-        else:
-            with open(".streamlit/config.toml", "w") as w:
-                w.write("")
-    
 
 order_key = lambda x: int(x.split(".css")[0])
 
+
 def app():
     # Select sytle
-    st.selectbox("Choose your style", sorted(os.listdir("styles"), key=order_key), key="selected_style")
+    st.selectbox(
+        "Choose your style",
+        sorted(os.listdir("styles"), key=order_key),
+        key="selected_style",
+    )
     selected_style = st.session_state.get("selected_style")
 
     # Load CSS sytle
-    with open(f"styles/{selected_style}") as css:
-        css_content = css.read()
+    with open(f"styles/{selected_style}") as css_file:
+        css_content = css_file.read()
         st.write(f"<style>{css_content}</style>", unsafe_allow_html=True)
     st.write(fonts, unsafe_allow_html=True)
 
     # Check state
     check_events()
-    
-    # App
-    tab1, tab2 = st.tabs(["APP", "CSS"])
 
+    # App
+    tab1, tab2, tab3 = st.tabs(["APP", "CSS", "Python"])
+
+    # -------------------------- TAB APP ---------------------------------------------
     with tab1:
 
         st.write(logo_svg, unsafe_allow_html=True)
-        st.write("""<p class="title"><br />STREAMLIT DEMO<br /></p>""", unsafe_allow_html=True)
-        
-        st.write("""<p class="question">Do you like those images?</p>""", unsafe_allow_html=True)
+        st.write(
+            """<p class="title"><br />STREAMLIT DEMO<br /></p>""",
+            unsafe_allow_html=True,
+        )
+
+        st.write(
+            """<p class="question">Do you like those images?</p>""",
+            unsafe_allow_html=True,
+        )
 
         _, col1, col2, _ = st.columns([1, 2, 2, 1])
 
         col1.image(lena_im_link, use_column_width=True)
         col2.image(lena_im_link, use_column_width=True)
 
-        col1.button("YES", use_container_width=True, key="yes_but", disabled=st.session_state.disabled)
-        col2.button("NO", type="primary", use_container_width=True, key="no_but", disabled=st.session_state.disabled)
+        col1.button(
+            "YES",
+            use_container_width=True,
+            key="yes_but",
+            disabled=st.session_state.disabled,
+        )
+        col2.button(
+            "NO",
+            type="primary",
+            use_container_width=True,
+            key="no_but",
+            disabled=st.session_state.disabled,
+        )
 
         _, col_center, _ = st.columns([1, 4, 1])
         col_center.text_input("Do you have something to add ?", placeholder="Nothing")
 
-        col_center.button("DISABLE BUTTONS", use_container_width=True, key="disable_clicked")
-        col_center.button("THEME", use_container_width=True, key="theme_clicked")
+        col_center.button(
+            "DISABLE BUTTONS", use_container_width=True, key="disable_clicked"
+        )
+
+    # -------------------------- TAB CSS ---------------------------------------------
     with tab2:
         st.code(css_content, language="css")
 
+    # -------------------------- TAB Python ------------------------------------------
+    with tab3:
+        with open("app.py") as python_file:
+            python_content = python_file.read()
+        st.code(python_content, language="python")
+
 
 if __name__ == "__main__":
-    
+
     app()

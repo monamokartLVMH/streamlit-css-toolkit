@@ -68,11 +68,6 @@ button[kind="primary"]:hover {
     border-color: rgb(6, 82, 221);
 }
 
-div[data-baseweb="tab-list"]>div[data-testid="stMarkdownContainer"] {
-    background-color: white;
-    color: white;
-}
-
 button[kind="primary"]:focus {
     background-color: rgb(6, 82, 221);
     border-color: rgb(6, 82, 221);
